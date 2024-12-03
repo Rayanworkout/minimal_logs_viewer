@@ -18,7 +18,7 @@
         <option value="{{ path }}">{{ name }}</option>
         {% endfor %}
     </select>
-    <button id="viewLogBtn">Afficher</button>
+    <button id="viewLogBtn">Afficher / Rafraichir</button>
 
     <!-- Input pour filtrer le texte des logs -->
     <input type="text" id="filterInput" placeholder="Filtrer par texte / date / statut ...">
@@ -35,6 +35,12 @@
     <div class="error-div">
         <i>Ce(s) projet(s) n'ont pas été trouvés ou ne comportent pas le dossier
             <b>logs</b>: {{ project_folders_errors }}</i>
+    </div>
+    {% endif %}
+
+    {% if config_error %}
+    <div class="error-div">
+        <i>Une erreur est survenue: <b>{{ config_error }}</b></i>
     </div>
     {% endif %}
 

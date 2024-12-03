@@ -30,27 +30,27 @@ input {
 }
 
 button {
-    background-color: #3498db;
+    background-color: #27ae60;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #12984a;
 }
 
 textarea {
     width: 90%;
-    max-width: 800px;
-    height: 300px;
+    max-width: 1200px;
+    height: 600px;
     padding: 15px;
     margin: 20px auto;
     display: block;
     border: 1px solid #ccc;
     border-radius: 4px;
     font-family: monospace;
-    font-size: 1em;
+    font-size: 1.5em;
     background-color: #fafafa;
     color: #333;
 }
@@ -83,12 +83,10 @@ input[type="checkbox"] {
 }
 
 #reverseLogBtn {
-    background-color: #27ae60;
+    max-width: 150px;
+    background-color: #3498db;
 }
 
-#reverseLogBtn:hover {
-    background-color: #1e8449;
-}
 
 textarea::placeholder {
     color: #999;

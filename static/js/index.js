@@ -17,7 +17,7 @@ document.getElementById('viewLogBtn').addEventListener('click', async () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ project: project })
+            body: JSON.stringify({ project: project, as_df: false })
         });
 
         if (response.ok) {
