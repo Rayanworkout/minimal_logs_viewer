@@ -38,6 +38,12 @@
     </div>
     {% endif %}
 
+    {% if config_error %}
+    <div class="error-div">
+        <i>Une erreur est survenue: <b>{{ config_error }}</b></i>
+    </div>
+    {% endif %}
+
     <!-- Afficher les logs -->
     <textarea id="logContent" readonly></textarea>
 
