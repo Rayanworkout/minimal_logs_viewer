@@ -3,21 +3,22 @@ import pandas as pd
 
 
 from flask import Flask, render_template, request, jsonify
+from helpers import load_projects_list_from_config
+
 
 app = Flask(__name__)
-
-# Bouton reverse logs + petit
-
-PROJECTS = [
-    r"project_1"
-
-]
 
 
 @app.route("/")
 def home():
     not_found_projets = []
     found_projects = []
+    
+    try:
+        PROJECTS = load_projects_list_from_config()
+    except Exception:
+        not_found_projets.append("Impossible de charger le fichier de configuration, une erreur est survenue.")
+        PROJECTS = []
     
     for project in PROJECTS:
         if not os.path.isdir(project) or not os.path.exists(project) or not os.path.exists(os.path.join(project, "logs")):

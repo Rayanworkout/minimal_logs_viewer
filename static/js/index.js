@@ -61,7 +61,7 @@ function filterLogs() {
         filteredLogs = filteredLogs.reverse();
     }
 
-    document.getElementById('logContent').value = filteredLogs.join('\n\n');
+    document.getElementById('logContent').value = filteredLogs.join('\n');
 }
 
 
