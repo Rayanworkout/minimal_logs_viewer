@@ -1,10 +1,10 @@
+import argparse
 import os
 import pandas as pd
 
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, current_app
 from helpers import load_projects_list_from_config
-
 
 app = Flask(__name__)
 
@@ -15,17 +15,19 @@ def home():
     found_projects = []
     config_error = None
 
-    success, PROJECTS = load_projects_list_from_config()
+    is_production = current_app.config.get("production", False)
+
+    success, PROJECTS = load_projects_list_from_config(is_production=is_production)
 
     if not success:
         config_error = PROJECTS[0]
 
         return render_template(
-        "index.html",
-        projects=[],
-        project_folders_errors=", ".join(not_found_projets),
-        config_error=config_error,
-    )
+            "index.html",
+            projects=[],
+            project_folders_errors=", ".join(not_found_projets),
+            config_error=config_error,
+        )
 
     for project in PROJECTS:
         if (
@@ -125,4 +127,18 @@ def convert_to_df(logs: str):
 
 
 if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(
+        description="Run the Flask app with optional configurations."
+    )
+    parser.add_argument(
+        "--prod",
+        type=lambda x: True if x == "1" else False,
+        default=0,
+        help="Run the app in production mode (1 or 0).",
+    )
+
+    prod = parser.parse_args().prod
+    app.config["production"] = prod
+    print(f"Production: {prod}")
     app.run(host="0.0.0.0")
