@@ -23,6 +23,9 @@ def load_projects_list_from_config() -> Tuple[bool, list]:
             if projects is None:
                 return False, [f'{CONFIG_FILE} ne contient pas la variable "projects".']
 
+            if len(projects) < 1:
+                return False, ["aucun projet n'est mentionné dans le fichier de configuration."]
+
             return True, projects
 
     except FileNotFoundError:
@@ -34,4 +37,4 @@ def load_projects_list_from_config() -> Tuple[bool, list]:
         )
 
     except json.JSONDecodeError:
-        return False, ["Le format du fichier JSON est incorrect."]
+        return False, ["le format du fichier JSON est incorrect."]
