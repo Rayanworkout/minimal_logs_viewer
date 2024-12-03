@@ -30,7 +30,7 @@ input {
 }
 
 button {
-    background-color: #3498db;
+    background-color: #27ae60;
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -83,12 +83,11 @@ input[type="checkbox"] {
 }
 
 #reverseLogBtn {
-    background-color: #27ae60;
+    max-width: 150px;
+    background-color: #3498db;
+    
 }
 
-#reverseLogBtn:hover {
-    background-color: #1e8449;
-}
 
 textarea::placeholder {
     color: #999;

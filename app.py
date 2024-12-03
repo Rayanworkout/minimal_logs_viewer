@@ -1,11 +1,15 @@
-from flask import Flask, render_template, request, jsonify
 import os
+import pandas as pd
+
+
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 
+# Bouton reverse logs + petit
 
 PROJECTS = [
-    r"C:\\Python\\Suivi_nommage_projets"
+    r"project_1"
 
 ]
 
@@ -52,10 +56,46 @@ def get_logs():
             log_content = f.readlines()
             logs += "\n\n".join([line.strip() for line in log_content])
     
+    # Convert to DataFrame if needed
+    as_df = data.get("as_df", False)
+    if as_df:
+        logs = convert_to_df(logs)
+
     return jsonify({"success": True, "log_content": logs})
 
 
+def convert_to_df(logs: str):
+    """
+    Fonction permettant de convertir les logs en df
+    pour les afficher sous forme de tableau.
 
+    Args:
+        logs (str): Les logs au format str.
+    """
+    # Convert the logs into a list of lines
+    log_lines = logs.strip().split('\n')
+
+    # Parse the log lines into a structured format
+    data = []
+    for line in log_lines:
+        if '---------------' in line:
+            continue  # Skip dashed lines
+        parts = line.split(' - ')
+        if len(parts) == 7:
+            date_time, level, server, session_id, duration, script, status = parts
+            data.append({
+                'Date_Time': date_time,
+                'Level': level,
+                'Host': server,
+                'Run_ID': session_id,
+                'Duration': float(duration),
+                'Script': script,
+                'Status': status
+            })
+
+    # Create a DataFrame
+    df = pd.DataFrame(data)
+    print(df)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0")
