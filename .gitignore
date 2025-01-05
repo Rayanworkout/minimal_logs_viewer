@@ -1,0 +1,4 @@
+.venv/
+project_1/
+**__pycache__/
+windows_task.xml

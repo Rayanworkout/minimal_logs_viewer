@@ -1,0 +1,93 @@
+/* Enhanced Log Viewer Styles */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1 {
+    font-size: 2em;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+select,
+button,
+input {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin: 10px auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 1em;
+}
+
+button {
+    background-color: #27ae60;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #12984a;
+}
+
+textarea {
+    width: 90%;
+    max-width: 1200px;
+    height: 600px;
+    padding: 15px;
+    margin: 20px auto;
+    display: block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 1.5em;
+    background-color: #fafafa;
+    color: #333;
+}
+
+label {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
+    text-align: left;
+    font-size: 0.9em;
+    color: #2c3e50;
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+    width: auto;
+    margin-right: 5px;
+}
+
+.error-div {
+    margin: 15px auto;
+    padding: 10px;
+    width: 90%;
+    max-width: 800px;
+    border-left: 5px solid #e74c3c;
+    background-color: #f8d7da;
+    color: #721c24;
+    font-size: 0.9em;
+}
+
+#reverseLogBtn {
+    max-width: 150px;
+    background-color: #3498db;
+}
+
+
+textarea::placeholder {
+    color: #999;
+}

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Viewer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <h1>Log Viewer</h1>
+
+    <!-- Sélection du projet -->
+    <select name="project" id="project">
+        <option value="" disabled selected>Sélectionner un projet </option>
+        {% for path, name in projects %}
+        <option value="{{ path }}">{{ name }}</option>
+        {% endfor %}
+    </select>
+    <button id="viewLogBtn">Afficher / Rafraichir</button>
+
+    <!-- Input pour filtrer le texte des logs -->
+    <input type="text" id="filterInput" placeholder="Filtrer par texte / date / statut ...">
+
+    <!-- Checkbox pour afficher les erreurs uniquement -->
+    <label for="failureFilter">
+        <input type="checkbox" id="failureFilter"> Failures uniquement
+    </label>
+
+    <button id="reverseLogBtn">Reverse Logs</button>
+
+    <!-- Afficher les projets non trouvés -->
+    {% if project_folders_errors %}
+    <div class="error-div">
+        <i>Ce(s) projet(s) n'ont pas été trouvés ou ne comportent pas le dossier
+            <b>logs</b>: {{ project_folders_errors }}</i>
+    </div>
+    {% endif %}
+
+    {% if config_error %}
+    <div class="error-div">
+        <i>Une erreur est survenue: <b>{{ config_error }}</b></i>
+    </div>
+    {% endif %}
+
+    <!-- Afficher les logs -->
+    <textarea id="logContent" readonly></textarea>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+
+</html>

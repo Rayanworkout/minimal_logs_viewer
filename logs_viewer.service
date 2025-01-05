@@ -1,0 +1,14 @@
+[Unit]
+Description=Logs viewer frontend service (Flask)
+After=network.target
+
+[Service]
+WorkingDirectory=#########
+ExecStart=#########/.venv/bin/python #########/app.py
+Restart=on-failure
+RestartSec=500ms
+User=###
+Group=sudo
+
+[Install]
+WantedBy=multi-user.target
